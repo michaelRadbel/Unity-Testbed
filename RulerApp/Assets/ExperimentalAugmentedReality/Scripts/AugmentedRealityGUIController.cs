@@ -93,7 +93,7 @@ public class AugmentedRealityGUIController : MonoBehaviour
     /// <summary>
     /// If set, this is the selected marker.
     /// </summary>
-    private ARLocationMarker m_selectedMarker;
+    private ARMemo m_selectedMarker;
 
     /// <summary>
     /// If set, this is the rectangle bounding the selected marker.
@@ -222,7 +222,7 @@ public class AugmentedRealityGUIController : MonoBehaviour
             m_selectedRect = new Rect();
         }
 
-        if (GameObject.FindObjectOfType<ARLocationMarker>() != null)
+        if (GameObject.FindObjectOfType<ARMemo>() != null)
         {
             m_hideAllRect = new Rect(Screen.width - UI_BUTTON_SIZE_X - UI_BUTTON_GAP_X,
                                      Screen.height - UI_BUTTON_SIZE_Y - UI_BUTTON_GAP_X,
@@ -230,7 +230,7 @@ public class AugmentedRealityGUIController : MonoBehaviour
                                      UI_BUTTON_SIZE_Y);
             if (GUI.Button(m_hideAllRect, "<size=30>Hide All</size>"))
             {
-                foreach (ARLocationMarker marker in GameObject.FindObjectsOfType<ARLocationMarker>())
+                foreach (ARMemo marker in GameObject.FindObjectsOfType<ARMemo>())
                 {
                     marker.SendMessage("Hide");
                 }
@@ -397,7 +397,7 @@ public class AugmentedRealityGUIController : MonoBehaviour
                 GameObject tapped = hitInfo.collider.gameObject;
                 if (!tapped.GetComponent<Animation>().isPlaying)
                 {
-                    m_selectedMarker = tapped.GetComponent<ARLocationMarker>();
+                    m_selectedMarker = tapped.GetComponent<ARMemo>();
                 }
             }
             else
